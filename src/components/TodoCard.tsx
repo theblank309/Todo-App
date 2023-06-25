@@ -27,7 +27,7 @@ function TodoCard({ todos }: Props) {
           <Text>{todo.body}</Text>
         </CardBody>
         <CardFooter>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" spacing={2}>
             <Button size="sm" colorScheme="orange">
               <EditIcon />
             </Button>
