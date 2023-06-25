@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Modal,
   ModalOverlay,
@@ -15,11 +14,27 @@ import {
 } from "@chakra-ui/react";
 import { Textarea } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
+import { FieldValues, useForm } from "react-hook-form";
+import { Todo } from "../App";
 
-function AddTodo() {
+interface Props {
+  onSubmitTodo: (todo: Todo) => void;
+}
+
+function AddTodo({ onSubmitTodo }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { register, handleSubmit, reset } = useForm();
 
-  const initialRef = React.useRef(null);
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
+    onSubmitTodo({
+      id: 0,
+      heading: data.heading,
+      body: data.body,
+    });
+    reset({ heading: "", body: "" });
+    onClose();
+  };
 
   return (
     <>
@@ -27,30 +42,33 @@ function AddTodo() {
         Add
       </Button>
 
-      <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Add Todo</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
-            <FormControl>
-              <FormLabel>First name</FormLabel>
-              <Input ref={initialRef} />
-            </FormControl>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Add Todo</ModalHeader>
+            <ModalCloseButton />
 
-            <FormControl mt={4}>
-              <FormLabel>Value</FormLabel>
-              <Textarea size="sm" />
-            </FormControl>
-          </ModalBody>
+            <ModalBody pb={6}>
+              <FormControl>
+                <FormLabel htmlFor="heading">Heading</FormLabel>
+                <Input id="heading" {...register("heading")} />
+              </FormControl>
 
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3}>
-              Save
-            </Button>
-            <Button onClick={onClose}>Cancel</Button>
-          </ModalFooter>
-        </ModalContent>
+              <FormControl mt={4}>
+                <FormLabel htmlFor="body">Body</FormLabel>
+                <Textarea size="sm" id="body" {...register("body")} />
+              </FormControl>
+            </ModalBody>
+
+            <ModalFooter>
+              <Button colorScheme="blue" mr={3} type="submit">
+                Save
+              </Button>
+              <Button onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+          </ModalContent>
+        </form>
       </Modal>
     </>
   );

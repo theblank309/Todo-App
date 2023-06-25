@@ -6,15 +6,26 @@ import TodoCard from "./components/TodoCard";
 import "./App.css";
 
 export interface Todo {
-  id: number;
+  id: number | null;
   heading: string;
   body: string;
 }
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([
-    { id: 1, heading: "Heading1", body: "More information about heading 1" },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const onSubmitTodo = (data: Todo) => {
+    let newId = 0;
+    if (todos.length > 0) {
+      newId = todos[todos.length - 1].id ? +1 : 1;
+    }
+    setTodos([...todos, { ...data, id: newId }]);
+  };
+
+  const onDeleteTodo = (data: Todo) => {
+    setTodos(todos.filter((todo) => todo.id !== data.id));
+  };
+
   return (
     <>
       <Grid
@@ -27,8 +38,8 @@ function App() {
           <NavBar />
         </GridItem>
         <GridItem area="main">
-          <UtilityBar />
-          <TodoCard todos={todos} />
+          <UtilityBar onSubmitTodo={onSubmitTodo} />
+          <TodoCard todos={todos} onDeleteTodo={onDeleteTodo} />
         </GridItem>
       </Grid>
     </>

@@ -14,9 +14,10 @@ import { Todo } from "../App";
 
 interface Props {
   todos: Todo[];
+  onDeleteTodo: (todo: Todo) => void;
 }
 
-function TodoCard({ todos }: Props) {
+function TodoCard({ todos, onDeleteTodo }: Props) {
   const createCard = (todo: Todo) => {
     return (
       <Card key={todo.id} variant="filled">
@@ -31,7 +32,11 @@ function TodoCard({ todos }: Props) {
             <Button size="sm" colorScheme="orange">
               <EditIcon />
             </Button>
-            <Button size="sm" colorScheme="red">
+            <Button
+              size="sm"
+              colorScheme="red"
+              onClick={() => onDeleteTodo(todo)}
+            >
               <DeleteIcon />
             </Button>
           </Stack>
