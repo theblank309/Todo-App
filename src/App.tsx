@@ -2,6 +2,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import UtilityBar from "./components/UtilityBar";
 import "./App.css";
+import TodoCard from "./components/TodoCard";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         </GridItem>
         <GridItem area="main">
           <UtilityBar />
+          <TodoCard />
         </GridItem>
       </Grid>
     </>
