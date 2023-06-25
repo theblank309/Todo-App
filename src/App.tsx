@@ -1,10 +1,20 @@
+import { useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import UtilityBar from "./components/UtilityBar";
-import "./App.css";
 import TodoCard from "./components/TodoCard";
+import "./App.css";
+
+export interface Todo {
+  id: number;
+  heading: string;
+  body: string;
+}
 
 function App() {
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, heading: "Heading1", body: "More information about heading 1" },
+  ]);
   return (
     <>
       <Grid
@@ -18,7 +28,7 @@ function App() {
         </GridItem>
         <GridItem area="main">
           <UtilityBar />
-          <TodoCard />
+          <TodoCard todos={todos} />
         </GridItem>
       </Grid>
     </>

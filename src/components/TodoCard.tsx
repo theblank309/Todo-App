@@ -6,24 +6,35 @@ import {
   CardHeader,
   Heading,
   SimpleGrid,
+  Stack,
   Text,
 } from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import { Todo } from "../App";
 
-function TodoCard() {
-  const tests = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+interface Props {
+  todos: Todo[];
+}
 
-  const createCard = (num: number) => {
-    console.log("Created");
+function TodoCard({ todos }: Props) {
+  const createCard = (todo: Todo) => {
     return (
-      <Card key={num} variant="filled">
+      <Card key={todo.id} variant="filled">
         <CardHeader>
-          <Heading size="md"> Heading {num} </Heading>
+          <Heading size="md"> {todo.heading} </Heading>
         </CardHeader>
         <CardBody>
-          <Text>More information about heading {num}</Text>
+          <Text>{todo.body}</Text>
         </CardBody>
         <CardFooter>
-          <Button>View here</Button>
+          <Stack direction="row" spacing={1}>
+            <Button size="sm" colorScheme="orange">
+              <EditIcon />
+            </Button>
+            <Button size="sm" colorScheme="red">
+              <DeleteIcon />
+            </Button>
+          </Stack>
         </CardFooter>
       </Card>
     );
@@ -35,7 +46,7 @@ function TodoCard() {
       templateColumns="repeat(auto-fill, minmax(300px, 1fr))"
       paddingTop="10px"
     >
-      {tests.map(createCard)}
+      {todos.map(createCard)}
     </SimpleGrid>
   );
 }
