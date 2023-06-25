@@ -6,7 +6,7 @@ import TodoCard from "./components/TodoCard";
 import "./App.css";
 
 export interface Todo {
-  id: number | null;
+  id?: number | null;
   heading: string;
   body: string;
 }
@@ -17,8 +17,10 @@ function App() {
   const onSubmitTodo = (data: Todo) => {
     let newId = 0;
     if (todos.length > 0) {
-      newId = todos[todos.length - 1].id ? +1 : 1;
+      let lastTodo = todos[todos.length - 1];
+      newId = lastTodo.id ? lastTodo.id + 1 : 1;
     }
+    console.log(newId);
     setTodos([...todos, { ...data, id: newId }]);
   };
 

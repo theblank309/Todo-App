@@ -28,7 +28,7 @@ function AddTodo({ onSubmitTodo }: Props) {
   const onSubmit = (data: FieldValues) => {
     console.log(data);
     onSubmitTodo({
-      id: 0,
+      id: null,
       heading: data.heading,
       body: data.body,
     });
