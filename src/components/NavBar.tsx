@@ -5,8 +5,6 @@ function NavBar() {
   return (
     <HStack
       justifyContent="space-between"
-      paddingLeft="20px"
-      paddingRight="20px"
       paddingBottom="10px"
       paddingTop="10px"
     >

@@ -4,12 +4,7 @@ import { AddIcon, DeleteIcon } from "@chakra-ui/icons";
 
 function UtilityBar() {
   return (
-    <HStack
-      paddingLeft="20px"
-      paddingRight="20px"
-      paddingBottom="10px"
-      paddingTop="10px"
-    >
+    <HStack paddingBottom="10px" paddingTop="10px">
       <ButtonGroup gap="0">
         <Button rightIcon={<AddIcon />} colorScheme="green">
           Add
