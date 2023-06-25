@@ -1,12 +1,22 @@
-import "./App.css";
+import { Grid, GridItem } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import UtilityBar from "./components/UtilityBar";
+import "./App.css";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <UtilityBar />
+      <Grid
+        templateAreas={{ base: `"nav" "main"` }}
+        templateColumns={{ base: "1fr" }}
+      >
+        <GridItem area="nav">
+          <NavBar />
+        </GridItem>
+        <GridItem area="main">
+          <UtilityBar />
+        </GridItem>
+      </Grid>
     </>
   );
 }
