@@ -56,12 +56,19 @@ function UpdateTodo({ todo, onEditTodo }: Props) {
                   id="heading"
                   defaultValue={todo.heading}
                   {...register("heading")}
+                  fontFamily={"Arial, sans-serif"}
                 />
               </FormControl>
 
               <FormControl mt={4}>
                 <FormLabel htmlFor="body">Body</FormLabel>
-                <Textarea size="sm" id="body" {...register("body")} />
+                <Textarea
+                  size="sm"
+                  id="body"
+                  {...register("body")}
+                  defaultValue={todo.body}
+                  fontFamily={"Arial, sans-serif"}
+                />
               </FormControl>
             </ModalBody>
 

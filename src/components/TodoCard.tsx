@@ -23,10 +23,10 @@ function TodoCard({ todos, onDeleteTodo, onEditTodo }: Props) {
   const createCard = (todo: Todo) => {
     return (
       <Card key={todo.id} variant="filled">
-        <CardHeader>
+        <CardHeader paddingBottom={2}>
           <Heading size="md"> {todo.heading} </Heading>
         </CardHeader>
-        <CardBody>
+        <CardBody paddingTop={2}>
           <Text>{todo.body}</Text>
         </CardBody>
         <CardFooter>
