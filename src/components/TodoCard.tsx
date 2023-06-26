@@ -9,15 +9,17 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
+import { DeleteIcon } from "@chakra-ui/icons";
 import { Todo } from "../App";
+import UpdateTodo from "./UpdateTodo";
 
 interface Props {
   todos: Todo[];
   onDeleteTodo: (todo: Todo) => void;
+  onEditTodo: (todo: Todo) => void;
 }
 
-function TodoCard({ todos, onDeleteTodo }: Props) {
+function TodoCard({ todos, onDeleteTodo, onEditTodo }: Props) {
   const createCard = (todo: Todo) => {
     return (
       <Card key={todo.id} variant="filled">
@@ -29,9 +31,7 @@ function TodoCard({ todos, onDeleteTodo }: Props) {
         </CardBody>
         <CardFooter>
           <Stack direction="row" spacing={2}>
-            <Button size="sm" colorScheme="orange">
-              <EditIcon />
-            </Button>
+            <UpdateTodo onEditTodo={onEditTodo} todo={todo} />
             <Button
               size="sm"
               colorScheme="red"

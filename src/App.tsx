@@ -24,6 +24,10 @@ function App() {
     setTodos([...todos, { ...data, id: newId }]);
   };
 
+  const onEditTodo = (data: Todo) => {
+    setTodos(todos.map((todo) => (todo.id === data.id ? data : todo)));
+  };
+
   const onDeleteTodo = (data: Todo) => {
     setTodos(todos.filter((todo) => todo.id !== data.id));
   };
@@ -41,7 +45,11 @@ function App() {
         </GridItem>
         <GridItem area="main">
           <UtilityBar onSubmitTodo={onSubmitTodo} />
-          <TodoCard todos={todos} onDeleteTodo={onDeleteTodo} />
+          <TodoCard
+            todos={todos}
+            onDeleteTodo={onDeleteTodo}
+            onEditTodo={onEditTodo}
+          />
         </GridItem>
       </Grid>
     </>
