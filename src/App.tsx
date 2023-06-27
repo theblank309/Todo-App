@@ -38,6 +38,10 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== data.id));
   };
 
+  const onClearAll = () => {
+    setTodos([]);
+  };
+
   return (
     <>
       <Grid
@@ -50,7 +54,7 @@ function App() {
           <NavBar />
         </GridItem>
         <GridItem area="main">
-          <UtilityBar onSubmitTodo={onSubmitTodo} />
+          <UtilityBar onSubmitTodo={onSubmitTodo} onClearAll={onClearAll} />
           <TodoCard
             todos={todos}
             onDeleteTodo={onDeleteTodo}
