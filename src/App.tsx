@@ -12,7 +12,13 @@ export interface Todo {
 }
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([
+    {
+      id: 0,
+      heading: "Todo Heading",
+      body: "Welcome to the todo app where you can track everthing",
+    },
+  ]);
 
   const onSubmitTodo = (data: Todo) => {
     let newId = 0;
