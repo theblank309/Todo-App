@@ -35,7 +35,7 @@ function ClearAll({ onClearAll }: Props) {
             <Button colorScheme="red" mr={3} onClick={onYesButton}>
               Yes
             </Button>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button colorScheme="gray" mr={3} onClick={onClose}>
               No
             </Button>
           </ModalFooter>
